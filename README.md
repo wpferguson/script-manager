@@ -1,41 +1,57 @@
 # script-manager
-Darktable script management solution
+a darktable script management solution
 
-  script_manager - a drop in luarc file that provides script management
+script_manager - cross platform lua scripts management
 
-  script_manager creates two modules, Script Install/Update and Script
-  Controller.  Script Install/Update installs the scripts, from the
-  specified repository, if they don't exist.  Once the scripts are 
-  installed the module provides a way to update the scripts with one
-  click.  After the scripts are installed, Script Controller starts.  A
-  button for each script is displayed.  Hovering over the button displays 
-  the documentation from the script. Clicking the button loads the script
-  and runs it.  A preference is updated to record that the script is active.
-  Once a script is active, the button changes to Deactivate to turn off the
-  script.
+## Description
 
-  ADDITIONAL SOFTWARE NEEDED FOR THIS SCRIPT
-  * git - https://git-scm.com/
+**script_manager** is designed to make the darktable lua scripts
+accessible to everyone without having to edit files or use 
+commands they aren't comfortable with.  
 
-  USAGE
-  * replace the existing luarc file with this one.  
-  * start darktable
-  * click install to install the scripts from the specified repository (default:
-    https://github.com/darktable-org/lua-scripts.git), if they aren't already.
-  * click update to retrieve the latest version of the scripts from the
-    specified repository (default: https://github.com/darktable-org/lua-scripts.git)
-  * activate the scripts you want 
+**script_manager** is meant to replace the luarc file in the 
+darktable configuration directory.  When darktable starts it looks 
+for the luarc file and loads it.
 
-  CAVEATS
-  * deactivate doesn't take effect until darktable is restarted.  There currently isn't
-    a way to unload a script from the UI (that I'm aware of).
-  * Newer scripts retrieved using update won't take effect until darktable is restarted
-    since we can't unload running scripts.  A script that isn't active and gets updated
-    will run the newest version if activated after the update.
-  * changing the repository, then clicking update will cause the current lua directory
-    ($HOME/lua-scripts) to be removed and a new one created by cloning the specified
-    repository.
+With **script_manager** you can install, update, or reinstall the lua 
+scripts.  You can turn individual scripts on or off with the click of 
+a button.  Scripts are divided into "categories" based on the lua 
+subdirectory they are located in.  For the lua scripts distribution
+the categories would be contrib, examples, official, and tools.
 
-    BUGS, COMMENTS, SUGGESTIONS
-    * Send to Bill Ferguson, wpferguson@gmail.com
+## ADDITIONAL SOFTWARE NEEDED FOR THIS SCRIPT
+* git - https://git-scm.com/
+
+## INSTALLATION
+
+### Linux and MacOS
+* make sure git is installed
+* download (or clone the repository of) script_manager
+* copy script_manager.lua to $HOME/.config/darktable/luarc
+
+### Windows
+* make sure git is installed.  I use https://gitforwindows.org.
+* download (or clone the repository of) script_manager
+* copy script_manager.lua to C:\Users\<username>\AppData\Local\darktable\luarc
+
+
+## USAGE
+* install script_manager
+* start darktable
+* go to the configuration tab and specify the location of git, if necessary
+* click install to install the scripts from the specified repository (default:
+  https://github.com/darktable-org/lua-scripts.git), if they aren't already.
+* click update to retrieve the latest version of the scripts from the
+  specified repository (default: https://github.com/darktable-org/lua-scripts.git)
+* activate the scripts you want 
+
+## USAGE NOTES
+* deactivate doesn't take effect until darktable is restarted.  The Lua API doesn't support
+  removing loaded scripts or GUI elements.
+* Newer scripts retrieved using update won't take effect until darktable is restarted
+  since we can't unload running scripts.  A script that isn't active and gets updated
+  will run the newest version if activated after the update.
+
+## BUGS, COMMENTS, SUGGESTIONS
+* Send to Bill Ferguson, <wpferguson@gmail.com>
 
