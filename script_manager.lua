@@ -439,8 +439,9 @@ local function activate(script, scriptname)
   if status then
     dt.print("Loaded " .. scriptname)
   else
+    dt.print(scriptname .. " failed to load")
     dt.print_error("Error loading " .. scriptname)
-    dt.print_error("Error message: " .. lib)
+    dt.print_error("Error message: " .. err)
   end
   return status
 end
